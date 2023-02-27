@@ -6,7 +6,6 @@ function main() {
   const yesterday = new Date();
   yesterday.setDate(yesterday.getDate() - 1);
   const messages = getMail(yesterday);
-  deleteAllEvents()
   for (let i in messages) {
     for (let j in messages[i]) {
       const message = messages[i][j];
@@ -32,7 +31,7 @@ function deleteAllEvents() {
 }
 
 function getMail(date) {
-  const threads = GmailApp.search(`subject:Amazon.co.jpでのご注文 AND before:${date.toLocaleDateString()}`);
+  const threads = GmailApp.search(`subject:Amazon.co.jpでのご注文 AND after:${date.toLocaleDateString()}`);
   return GmailApp.getMessagesForThreads(threads).reverse();
 }
 
